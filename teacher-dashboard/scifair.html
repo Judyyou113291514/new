@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>科展管理 · 新手老師成長儀表板</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="layout" class="layout">
+
+  <div class="page-head">
+    <h1>科展管理</h1>
+    <p class="page-desc">八週節奏：選題 → 查資料 → 動機假設 → 預做 → 正式實驗 → 整理圖表 → 寫報告 → 練口試。每週勾一次，落後會自動標紅。</p>
+  </div>
+
+  <section class="card mb-4" aria-labelledby="h-overview">
+    <div class="card-head">
+      <span class="card-icon" id="icon-flask"></span>
+      <h3 id="h-overview">整體進度</h3>
+      <a class="btn btn-sm" href="settings.html#semester">調整起始日</a>
+      <button class="btn btn-primary btn-sm" id="newGroupBtn" type="button">新增分組</button>
+    </div>
+    <div id="overview"></div>
+  </section>
+
+  <div id="groupList" class="stack"></div>
+
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/scifair.js"></script>
+</body>
+</html>
