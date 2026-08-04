@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>資源中心 · 新手老師成長儀表板</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="layout" class="layout">
+
+  <div class="page-head">
+    <h1>資源中心</h1>
+    <p class="page-desc">常用連結、可勾選的檢核清單、以及自己的教學筆記都放這裡。檢核清單是給「明天就要用」的時候查的，不是給人讀完的。</p>
+  </div>
+
+  <div class="tabs mb-4" id="mainTabs" role="tablist">
+    <button class="tab is-active" data-tab="links" role="tab" type="button">常用連結</button>
+    <button class="tab" data-tab="checklists" role="tab" type="button">檢核清單</button>
+    <button class="tab" data-tab="notes" role="tab" type="button">教學筆記</button>
+  </div>
+
+  <!-- 常用連結 -->
+  <section id="panel-links" class="card" aria-labelledby="h-links">
+    <div class="card-head">
+      <span class="card-icon" id="icon-link"></span>
+      <h3 id="h-links">常用連結</h3>
+      <select id="filterCat" aria-label="依分類篩選" style="max-width:160px"></select>
+      <button class="btn btn-primary btn-sm" id="newLinkBtn" type="button">新增連結</button>
+    </div>
+    <div id="linkList"></div>
+  </section>
+
+  <!-- 檢核清單 -->
+  <section id="panel-checklists" class="stack" hidden>
+    <div class="card card-tight">
+      <div class="row">
+        <span class="card-icon" id="icon-check"></span>
+        <strong class="grow">檢核清單</strong>
+        <span class="small muted hide-sm">內建清單來自新進教師生存指南</span>
+        <button class="btn btn-primary btn-sm" id="newClBtn" type="button">新增清單</button>
+      </div>
+    </div>
+    <div id="clList" class="stack"></div>
+  </section>
+
+  <!-- 教學筆記 -->
+  <section id="panel-notes" class="card" aria-labelledby="h-notes" hidden>
+    <div class="card-head">
+      <span class="card-icon" id="icon-note"></span>
+      <h3 id="h-notes">教學筆記</h3>
+      <input type="search" id="noteSearch" placeholder="搜尋標題或內容" style="max-width:200px" aria-label="搜尋筆記">
+      <button class="btn btn-primary btn-sm" id="newNoteBtn" type="button">新增筆記</button>
+    </div>
+    <div id="noteList"></div>
+  </section>
+
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/resources.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>教師反思 · 新手老師成長儀表板</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="layout" class="layout">
+
+  <div class="page-head">
+    <h1>教師反思</h1>
+    <p class="page-desc">先能寫得完，再求寫得深。從 L1 開始，做滿三週再碰 L2；反思完一定要有一個動作，哪怕只是「明天講指令時多停 3 秒」。</p>
+  </div>
+
+  <section class="card mb-4" id="quick" aria-labelledby="h-write">
+    <div class="card-head">
+      <span class="card-icon" id="icon-loop"></span>
+      <h3 id="h-write">寫一篇反思</h3>
+      <span class="small muted" id="editingHint"></span>
+    </div>
+    <div class="tabs mb-4" id="levelTabs" role="tablist"></div>
+    <div id="formArea"></div>
+    <div class="row mt-4">
+      <button class="btn btn-primary" id="saveBtn" type="button">儲存這篇反思</button>
+      <button class="btn btn-ghost" id="resetBtn" type="button">清空表單</button>
+    </div>
+  </section>
+
+  <div class="grid grid-sidebar-right">
+
+    <section class="card" aria-labelledby="h-records">
+      <div class="card-head">
+        <span class="card-icon" id="icon-note"></span>
+        <h3 id="h-records">反思紀錄</h3>
+        <select id="filterLevel" aria-label="依層級篩選" style="max-width:130px">
+          <option value="">全部層級</option>
+          <option value="L1">L1 速記</option>
+          <option value="L2">L2 六格卡</option>
+          <option value="L3">L3 深挖</option>
+        </select>
+      </div>
+      <div id="recordList"></div>
+    </section>
+
+    <div class="stack">
+      <section class="card" aria-labelledby="h-keywords">
+        <div class="card-head">
+          <span class="card-icon" id="icon-search"></span>
+          <h3 id="h-keywords">關鍵詞統計</h3>
+        </div>
+        <p class="small muted">重複三次以上的問題不是偶發，是<strong>系統性缺口</strong>，要用制度解決而非靠意志力。</p>
+        <div id="keywordStats"></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-rhythm">
+        <div class="card-head">
+          <span class="card-icon" id="icon-calendar"></span>
+          <h3 id="h-rhythm">反思節奏題組</h3>
+        </div>
+        <div class="tabs mb-4" id="rhythmTabs" role="tablist"></div>
+        <div id="rhythmArea"></div>
+        <button class="btn btn-sm btn-ghost mt-3" id="rhythmResetBtn" type="button">取消本組全部勾選</button>
+      </section>
+    </div>
+
+  </div>
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/reflect.js"></script>
+</body>
+</html>

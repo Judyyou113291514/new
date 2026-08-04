@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>設定與資料 · 新手老師成長儀表板</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="layout" class="layout">
+
+  <div class="page-head">
+    <h1>設定與資料</h1>
+    <p class="page-desc">所有資料只存在這台電腦的瀏覽器（localStorage），不會上傳到任何地方。換電腦或清瀏覽器資料前，請先匯出 JSON 備份。</p>
+  </div>
+
+  <section class="card mb-4" id="semester" aria-labelledby="h-basic">
+    <div class="card-head">
+      <span class="card-icon" id="icon-cog"></span>
+      <h3 id="h-basic">基本資料與學期日期</h3>
+    </div>
+    <div class="field-row">
+      <div class="field"><label for="stName">老師姓名</label><input type="text" id="stName" data-k="teacherName"></div>
+      <div class="field"><label for="stSchool">學校</label><input type="text" id="stSchool" data-k="school"></div>
+    </div>
+    <div class="field-row">
+      <div class="field"><label for="stStart">學期開始</label><input type="date" id="stStart" data-k="semesterStart"></div>
+      <div class="field"><label for="stEnd">學期結束</label><input type="date" id="stEnd" data-k="semesterEnd"></div>
+    </div>
+    <div class="field-row mb-0">
+      <div class="field">
+        <label for="stPm">班親會日期</label><input type="date" id="stPm" data-k="parentMeetingDate">
+        <span class="field-hint">儀表板會顯示倒數與準備提醒。</span>
+      </div>
+      <div class="field">
+        <label for="stSf">科展第一週起始日</label><input type="date" id="stSf" data-k="sciFairStart">
+        <span class="field-hint">科展頁的 8 週進度是從這天往後算的。</span>
+      </div>
+    </div>
+    <div id="semesterInfo" class="mt-3"></div>
+  </section>
+
+  <section class="card mb-4" id="timetable" aria-labelledby="h-tt">
+    <div class="card-head">
+      <span class="card-icon" id="icon-calendar"></span>
+      <h3 id="h-tt">週課表</h3>
+      <span class="small muted hide-sm">直接在格子裡打字，離開欄位就會存</span>
+      <button class="btn btn-ghost btn-sm" id="clearTtBtn" type="button">清空課表</button>
+    </div>
+    <p class="small muted">填班級或課程名稱，例如「五年一班」。空白代表該節沒課。儀表板的「今日課表」讀的就是這張表。</p>
+    <div class="table-wrap"><div id="ttGrid"></div></div>
+    <div class="field mt-4 mb-0" style="max-width:420px">
+      <label for="ttPeriods">節次名稱（用逗號分隔，可增減節數）</label>
+      <input type="text" id="ttPeriods">
+      <span class="field-hint">例如：1,2,3,4,5,6,7 或 第一節,第二節,…</span>
+    </div>
+  </section>
+
+  <div class="grid grid-2 mb-4">
+    <section class="card" aria-labelledby="h-backup">
+      <div class="card-head">
+        <span class="card-icon" id="icon-download"></span>
+        <h3 id="h-backup">備份與還原</h3>
+      </div>
+      <p class="small muted">建議每個月匯出一次，檔名會自動帶日期。匯入會<strong>覆蓋</strong>目前所有資料。</p>
+      <div class="row mb-4">
+        <button class="btn btn-primary" id="exportBtn" type="button">匯出 JSON 備份</button>
+        <button class="btn" id="importBtn" type="button">匯入 JSON</button>
+        <input type="file" id="importFile" accept="application/json,.json" hidden>
+      </div>
+      <div class="field mb-0">
+        <label for="pasteArea">或直接貼上 JSON 內容</label>
+        <textarea id="pasteArea" placeholder='{"meta":…}' style="min-height:110px;font-family:var(--font-ui);font-size:12px"></textarea>
+        <button class="btn btn-sm mt-3" id="pasteImportBtn" type="button">從貼上的內容匯入</button>
+      </div>
+    </section>
+
+    <section class="card" aria-labelledby="h-storage">
+      <div class="card-head">
+        <span class="card-icon" id="icon-box"></span>
+        <h3 id="h-storage">儲存空間與重設</h3>
+      </div>
+      <div id="usageBox" class="mb-4"></div>
+      <div class="alert alert-warn mb-4" id="warnBox"></div>
+      <div class="row">
+        <button class="btn btn-danger" id="clearBtn" type="button">清除全部資料</button>
+        <button class="btn" id="reseedBtn" type="button">重新載入示範資料</button>
+      </div>
+      <p class="xsmall faint mt-3">清除前請先匯出備份。示範資料的日期是相對於「今天」產生的，重新載入後會是最新的。</p>
+    </section>
+  </div>
+
+  <section class="card" aria-labelledby="h-counts">
+    <div class="card-head">
+      <span class="card-icon" id="icon-chart"></span>
+      <h3 id="h-counts">目前資料量</h3>
+    </div>
+    <div id="countGrid" class="grid grid-4"></div>
+  </section>
+
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/settings.js"></script>
+</body>
+</html>

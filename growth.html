@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>專業成長 · 新手老師成長儀表板</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<!-- Chart.js（畫雷達圖用）。沒有網路時頁面仍可用，只是圖改成條狀顯示 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+<div id="layout" class="layout">
+
+  <div class="page-head">
+    <h1>專業成長</h1>
+    <p class="page-desc">第一年做到「安全、有秩序、學生喜歡自然課」就已經合格。這一頁的用途是看見自己的變化，不是打分數羞辱自己。</p>
+  </div>
+
+  <div class="grid grid-sidebar-right mb-4">
+
+    <section class="card" aria-labelledby="h-radar">
+      <div class="card-head">
+        <span class="card-icon" id="icon-chart"></span>
+        <h3 id="h-radar">四面向自評比較</h3>
+        <button class="btn btn-primary btn-sm" id="newAssessBtn" type="button">做一次自評</button>
+      </div>
+      <div id="radarWrap" style="position:relative;height:320px"><canvas id="radarChart"></canvas></div>
+      <div id="radarFallback"></div>
+      <div id="assessList" class="mt-4"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-weak">
+      <div class="card-head">
+        <span class="card-icon" id="icon-target"></span>
+        <h3 id="h-weak">待精進項目</h3>
+      </div>
+      <p class="small muted">最近一次自評中 3 分以下的題目。挑一項轉成成長目標就好，一次改一件事才做得到。</p>
+      <div id="weakList"></div>
+    </section>
+
+  </div>
+
+  <section class="card mb-4" aria-labelledby="h-goals">
+    <div class="card-head">
+      <span class="card-icon" id="icon-star"></span>
+      <h3 id="h-goals">成長目標</h3>
+      <button class="btn btn-primary btn-sm" id="newGoalBtn" type="button">新增目標</button>
+    </div>
+    <div id="goalList"></div>
+  </section>
+
+  <section class="card" aria-labelledby="h-timeline">
+    <div class="card-head">
+      <span class="card-icon" id="icon-calendar"></span>
+      <h3 id="h-timeline">成長歷程</h3>
+      <select id="filterType" aria-label="依類型篩選" style="max-width:140px"></select>
+      <button class="btn btn-primary btn-sm" id="newMsBtn" type="button">新增紀錄</button>
+    </div>
+    <div id="msList"></div>
+  </section>
+
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/growth.js"></script>
+</body>
+</html>

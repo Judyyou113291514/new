@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>班級與學生 · 新手老師成長儀表板</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="layout" class="layout">
+
+  <div class="page-head">
+    <h1>班級與學生</h1>
+    <p class="page-desc">科任老師一週只見每個班兩三節，記名字與寫紀錄要靠工具不靠記憶。標籤只是提醒，不是標籤化學生。</p>
+  </div>
+
+  <!-- 班級一覽 + 課堂點數 -->
+  <section class="card mb-4" aria-labelledby="h-classes">
+    <div class="card-head">
+      <span class="card-icon" id="icon-users"></span>
+      <h3 id="h-classes">我的班級</h3>
+      <button class="btn btn-sm" id="pasteBtn" type="button">批次貼上名單</button>
+      <button class="btn btn-primary btn-sm" id="newClassBtn" type="button">新增班級</button>
+    </div>
+    <div id="classCards" class="grid grid-3"></div>
+  </section>
+
+  <!-- 篩選列 -->
+  <div class="row mb-4">
+    <select id="filterClass" aria-label="依班級篩選" style="max-width:180px"></select>
+    <select id="filterTag" aria-label="依標籤篩選" style="max-width:180px"></select>
+    <input type="text" id="searchName" placeholder="搜尋姓名或座號" style="max-width:200px" aria-label="搜尋學生">
+    <span class="grow"></span>
+    <button class="btn btn-primary btn-sm" id="newStudentBtn" type="button">新增學生</button>
+  </div>
+
+  <div class="grid grid-sidebar-right">
+    <section class="card" aria-labelledby="h-students">
+      <div class="card-head">
+        <span class="card-icon" id="icon-grid"></span>
+        <h3 id="h-students">學生卡</h3>
+        <span class="small muted" id="studentCount"></span>
+      </div>
+      <div id="studentGrid" class="student-grid"></div>
+    </section>
+
+    <section class="card" aria-labelledby="h-obs">
+      <div class="card-head">
+        <span class="card-icon" id="icon-note"></span>
+        <h3 id="h-obs">觀察紀錄時間軸</h3>
+      </div>
+      <div id="obsPanel"></div>
+    </section>
+  </div>
+
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/classes.js"></script>
+</body>
+</html>

@@ -3,35 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>科展管理 · 新手老師成長儀表板</title>
+<title>儀表板 · 新手老師成長儀表板</title>
+<meta name="description" content="國小自然科任教師的每日工作台：今日課表、待辦、提醒、待關注學生與本週反思。">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
+
+<!-- 側邊欄與頂部列由 ui.js 的 renderShell() 自動插入，
+     這個 #layout 裡面寫的內容會被包進主內容區 -->
 <div id="layout" class="layout">
 
   <div class="page-head">
-    <h1>科展管理</h1>
-    <p class="page-desc">八週節奏：選題 → 查資料 → 動機假設 → 預做 → 正式實驗 → 整理圖表 → 寫報告 → 練口試。每週勾一次，落後會自動標紅。</p>
+    <h1>今天的工作台</h1>
+    <p class="page-desc">一天打開一次就好：先看今日課表與提醒，下課後回來勾掉待辦、寫一句速記。</p>
   </div>
 
-  <section class="card mb-4" aria-labelledby="h-overview">
-    <div class="card-head">
-      <span class="card-icon" id="icon-flask"></span>
-      <h3 id="h-overview">整體進度</h3>
-      <a class="btn btn-sm" href="settings.html#semester">調整起始日</a>
-      <button class="btn btn-primary btn-sm" id="newGroupBtn" type="button">新增分組</button>
+  <div class="grid grid-sidebar-right">
+
+    <!-- 左欄 -->
+    <div class="stack">
+
+      <section class="card" aria-labelledby="h-today">
+        <div class="card-head">
+          <span class="card-icon" id="icon-clock"></span>
+          <h3 id="h-today">今日課表</h3>
+          <a class="btn btn-sm" href="settings.html#timetable">編輯週課表</a>
+        </div>
+        <div id="todayPeriods"></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-todos">
+        <div class="card-head">
+          <span class="card-icon" id="icon-check"></span>
+          <h3 id="h-todos">待辦清單</h3>
+          <button class="btn btn-primary btn-sm" id="addTodoBtn" type="button">新增待辦</button>
+        </div>
+        <div class="tabs mb-4" id="todoTabs" role="tablist"></div>
+        <form id="inlineTodoForm" class="row mb-3">
+          <input type="text" id="inlineTodoText" class="grow" placeholder="直接在這裡輸入，按 Enter 新增到目前分頁" aria-label="新增待辦">
+          <button class="btn" type="submit">新增</button>
+        </form>
+        <div id="todoList"></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-wheels">
+        <div class="card-head">
+          <span class="card-icon" id="icon-target"></span>
+          <h3 id="h-wheels">本週四輪進度</h3>
+        </div>
+        <div class="ring-grid" id="wheels"></div>
+        <p class="small muted mt-3 mb-0" id="wheelsNote"></p>
+      </section>
+
     </div>
-    <div id="overview"></div>
-  </section>
 
-  <div id="groupList" class="stack"></div>
+    <!-- 右欄 -->
+    <div class="stack">
 
+      <section class="card" aria-labelledby="h-alerts">
+        <div class="card-head">
+          <span class="card-icon" id="icon-alert"></span>
+          <h3 id="h-alerts">今天要注意的事</h3>
+        </div>
+        <div class="stack" id="alertList" style="gap:10px"></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-flagged">
+        <div class="card-head">
+          <span class="card-icon" id="icon-users"></span>
+          <h3 id="h-flagged">待關注學生</h3>
+          <a class="btn btn-sm" href="classes.html">班級頁</a>
+        </div>
+        <div id="flaggedList"></div>
+      </section>
+
+      <section class="card" aria-labelledby="h-reflect">
+        <div class="card-head">
+          <span class="card-icon" id="icon-loop"></span>
+          <h3 id="h-reflect">本週反思摘要</h3>
+        </div>
+        <div id="reflectSummary"></div>
+        <a class="btn btn-primary btn-block mt-4" href="reflect.html#quick">立即寫 2 分鐘速記</a>
+      </section>
+
+    </div>
+  </div>
 </div>
 
 <script src="assets/js/store.js"></script>
 <script src="assets/js/ui.js"></script>
-<script src="assets/js/scifair.js"></script>
+<script src="assets/js/dashboard.js"></script>
 </body>
 </html>
