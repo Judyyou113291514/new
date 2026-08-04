@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>親師溝通 · 新手老師成長儀表板</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&amp;family=Inter:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div id="layout" class="layout">
+
+  <div class="page-head">
+    <h1>親師溝通</h1>
+    <p class="page-desc">科任老師通常透過導師轉達。原則：先確認事實、只描述行為不評價人、有狀況先找導師再談家長。</p>
+  </div>
+
+  <!-- 待追蹤清單 -->
+  <section class="card mb-4" id="followups" aria-labelledby="h-follow">
+    <div class="card-head">
+      <span class="card-icon" id="icon-inbox"></span>
+      <h3 id="h-follow">待回覆／待追蹤</h3>
+      <span class="small muted" id="followCount"></span>
+    </div>
+    <div id="followList"></div>
+  </section>
+
+  <div class="grid grid-sidebar-right">
+
+    <!-- 模板庫 -->
+    <section class="card" aria-labelledby="h-tpl">
+      <div class="card-head">
+        <span class="card-icon" id="icon-chat"></span>
+        <h3 id="h-tpl">溝通模板庫</h3>
+        <button class="btn btn-primary btn-sm" id="newTplBtn" type="button">新增模板</button>
+      </div>
+      <div class="tpl-grid mb-4" id="tplGrid"></div>
+
+      <div class="divider"></div>
+      <h4 class="mb-3">帶入變數並產生文字</h4>
+      <div class="field-row">
+        <div class="field">
+          <label for="varStudent">學生</label>
+          <select id="varStudent"></select>
+        </div>
+        <div class="field">
+          <label for="varParent">家長稱謂</label>
+          <input type="text" id="varParent" value="家長">
+        </div>
+      </div>
+      <div class="field">
+        <label for="varUnit">單元／事件（模板中的 {{unit}}）</label>
+        <input type="text" id="varUnit" placeholder="例：熱的傳導">
+      </div>
+      <div class="field">
+        <label for="genText">產生的訊息（可直接修改）</label>
+        <textarea id="genText" style="min-height:190px" placeholder="先在上面點一個模板。"></textarea>
+      </div>
+      <div class="row">
+        <button class="btn btn-primary" id="copyBtn" type="button">一鍵複製</button>
+        <button class="btn" id="saveAsRecordBtn" type="button">存成聯繫紀錄</button>
+        <button class="btn btn-ghost" id="clearGenBtn" type="button">清空</button>
+      </div>
+    </section>
+
+    <!-- 聯繫紀錄 -->
+    <section class="card" aria-labelledby="h-log">
+      <div class="card-head">
+        <span class="card-icon" id="icon-note"></span>
+        <h3 id="h-log">一對一聯繫紀錄</h3>
+        <button class="btn btn-primary btn-sm" id="newContactBtn" type="button">新增</button>
+      </div>
+      <div class="row mb-3">
+        <select id="filterClass" aria-label="依班級篩選"></select>
+      </div>
+      <div id="contactList"></div>
+    </section>
+
+  </div>
+</div>
+
+<script src="assets/js/store.js"></script>
+<script src="assets/js/ui.js"></script>
+<script src="assets/js/contact.js"></script>
+</body>
+</html>
